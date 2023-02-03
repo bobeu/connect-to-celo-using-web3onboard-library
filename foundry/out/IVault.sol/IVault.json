@@ -1,0 +1,374 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "stake",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unstake",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "stake()": "3a4b66f1",
+    "unstake()": "2def6620"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"stake\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unstake\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/IVault.sol\":\"IVault\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":solmate/=lib/solmate/src/\"]},\"sources\":{\"src/interfaces/IVault.sol\":{\"keccak256\":\"0x697445b85dc6fb3f17c18f569b35ba0f12097500962f9137d16a812dc866cb5d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0e07db3b18dadb8ff1be70828c899a9ca2f860086c53842fdac6564fabbc7459\",\"dweb:/ipfs/QmbH8fSP3peTZ9FxCrnuHzikNVRnFq41X5PFLK6tJMM9rN\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "stake",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "unstake",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/",
+        ":solmate/=lib/solmate/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/interfaces/IVault.sol": "IVault"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/interfaces/IVault.sol": {
+        "keccak256": "0x697445b85dc6fb3f17c18f569b35ba0f12097500962f9137d16a812dc866cb5d",
+        "urls": [
+          "bzz-raw://0e07db3b18dadb8ff1be70828c899a9ca2f860086c53842fdac6564fabbc7459",
+          "dweb:/ipfs/QmbH8fSP3peTZ9FxCrnuHzikNVRnFq41X5PFLK6tJMM9rN"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/interfaces/IVault.sol",
+    "id": 27511,
+    "exportedSymbols": {
+      "IVault": [
+        27510
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:275:21",
+    "nodes": [
+      {
+        "id": 27492,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:21",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 27510,
+        "nodeType": "ContractDefinition",
+        "src": "60:248:21",
+        "nodes": [
+          {
+            "id": 27499,
+            "nodeType": "StructDefinition",
+            "src": "110:93:21",
+            "nodes": [],
+            "canonicalName": "IVault.Staker",
+            "members": [
+              {
+                "constant": false,
+                "id": 27494,
+                "mutability": "mutable",
+                "name": "depositTime",
+                "nameLocation": "138:11:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 27499,
+                "src": "133:16:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 27493,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "133:4:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 27496,
+                "mutability": "mutable",
+                "name": "celoAmount",
+                "nameLocation": "163:10:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 27499,
+                "src": "158:15:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 27495,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "158:4:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 27498,
+                "mutability": "mutable",
+                "name": "account",
+                "nameLocation": "190:7:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 27499,
+                "src": "182:15:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 27497,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "182:7:21",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Staker",
+            "nameLocation": "117:6:21",
+            "scope": 27510,
+            "visibility": "public"
+          },
+          {
+            "id": 27504,
+            "nodeType": "FunctionDefinition",
+            "src": "209:48:21",
+            "nodes": [],
+            "functionSelector": "3a4b66f1",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "stake",
+            "nameLocation": "218:5:21",
+            "parameters": {
+              "id": 27500,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "223:2:21"
+            },
+            "returnParameters": {
+              "id": 27503,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27502,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 27504,
+                  "src": "251:4:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 27501,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "251:4:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "250:6:21"
+            },
+            "scope": 27510,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 27509,
+            "nodeType": "FunctionDefinition",
+            "src": "261:42:21",
+            "nodes": [],
+            "functionSelector": "2def6620",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "unstake",
+            "nameLocation": "270:7:21",
+            "parameters": {
+              "id": 27505,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "277:2:21"
+            },
+            "returnParameters": {
+              "id": 27508,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27507,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 27509,
+                  "src": "297:4:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 27506,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "297:4:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "296:6:21"
+            },
+            "scope": 27510,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IVault",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          27510
+        ],
+        "name": "IVault",
+        "nameLocation": "70:6:21",
+        "scope": 27511,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 21
+}
