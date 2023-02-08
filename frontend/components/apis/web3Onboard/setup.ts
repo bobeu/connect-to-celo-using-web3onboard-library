@@ -1,7 +1,7 @@
 import { init } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
 import coinbaseWallet from "@web3-onboard/coinbase";
-import walletConnect from "@web3-onboard/walletconnect";
+import walletConnectModule from "@web3-onboard/walletconnect";
 import { ChainParams } from "@/interfaces";
 import { ethers } from "ethers";
 
@@ -9,7 +9,7 @@ const API_KEY = process.env.BLOCKNATIVE_API_KEY
 
 const injected = injectedModule();
 const coinbase = coinbaseWallet();
-const walletConnectWallet = walletConnect();
+const walletconnect = walletConnectModule();
 
 // Converts chain id in number mode to hex value
 export function hexlify(chainid: number) {
@@ -33,29 +33,32 @@ const CHAINS = [
     token: ALFAJORES.nativeCurrency.name,
     label: ALFAJORES.chainName,
     rpcUrl: ALFAJORES.rpcUrls[0],
-    // icon: 'bsclogo.svg'
   }
 ]
-
+// defense hero grunt cannon renew easily reflect bean season lift giraffe figure
 export const web3Onboard = init({
-  wallets: [injected, coinbase, walletConnectWallet],
-  chains: CHAINS,
+  wallets: [injected, coinbase, walletconnect],
+  chains: [...CHAINS],
   apiKey: API_KEY,
   appMetadata: {
     name: "Celo stkingdapp",
     icon: "celologopng.png",
     logo: "celologopng.png",
     description: "A simple generic staking dapp",
+    recommendedInjectedWallets:[
+      {name: 'Coinbase', url: "https://wallet.coinbase.com"},
+      {name: 'Metamask', url: "https://metamask.io"}
+    ],
   },
   accountCenter: {
     desktop: {
-      position: 'topRight',
+      position: 'topLeft',
       enabled: true,
       minimal: false
     },
     mobile: {
       enabled: true,
-      minimal: false,
+      minimal: true,
       position: 'topRight'
     }
   },

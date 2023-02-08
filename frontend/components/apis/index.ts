@@ -1,32 +1,28 @@
-// import { ethers } from "ethers";
 import getContractData from "./contractdata";
-import { InstanceProps, OptionProps, Profile, transactionResult, TransactionResultProp } from "@/interfaces";
-
-import { ethers, Contract, ContractTransaction, ContractReceipt } from "ethers";
+import { InstanceProps, OptionProps, Profile, transactionResult } from "@/interfaces";
+import { ethers, Contract, ContractReceipt } from "ethers";
 import { EIP1193Provider } from "@web3-onboard/core";
-import { BigNumber } from "bignumber.js";
 
 // Return provider and signer
-function getwrappedProviderAndSigner(provider?: EIP1193Provider) {
-  if (!provider) return null;
-  const wrappedProvider = new ethers.providers.Web3Provider(provider);
-  const signer = wrappedProvider.getSigner();
-  return { wrappedProvider, signer };
+function wrappedProvider(provider: EIP1193Provider) {
+  if (!provider) alert('Provider not ready');
+  return new ethers.providers.Web3Provider(provider, 'any');
 }
 
 // get contract instances
 function contractInstances(props: InstanceProps) {
   const { tokenAbi, vaultAbi, tokenAddr,vaultAddr, provider } = props;
-  const vault_ins = new Contract(vaultAddr, vaultAbi, getwrappedProviderAndSigner(provider)?.wrappedProvider);
-  const vault_ins_noSigner = new Contract(vaultAddr, vaultAbi);
-  const token_ins = new Contract(tokenAddr, tokenAbi, getwrappedProviderAndSigner(provider)?.wrappedProvider);
-  const token_ins_noSigner = new Contract(tokenAddr, tokenAbi);
+  if(!provider) alert('Provider not ready');
+  const vault_ins = new Contract(vaultAddr, vaultAbi, wrappedProvider(provider).getSigner());
+  const vault_ins_noSigner = new Contract(vaultAddr, vaultAbi, wrappedProvider(provider));
+  const token_ins = new Contract(tokenAddr, tokenAbi, wrappedProvider(provider).getSigner());
+  const token_ins_noSigner = new Contract(tokenAddr, tokenAbi, wrappedProvider(provider));
 
   return { vault_ins, token_ins, vault_ins_noSigner, token_ins_noSigner }
 }
 
 async function sendtransaction(options: OptionProps) {
-  const { provider, cancelLoading, functionName, value, account } = options;
+  const { provider, cancelLoading, functionName, value, account, who } = options;
   const { vaultAbi, tokenAbi, vaultAddr, tokenAddr } = getContractData();
   const { vault_ins, token_ins_noSigner } = contractInstances({
     vaultAbi,
@@ -40,9 +36,9 @@ async function sendtransaction(options: OptionProps) {
   try {
     switch (functionName) {
       case 'stake':
-        // const txn = await vault_ins.stake({value: value });
-        const txn = await vault_ins.setToken(tokenAddr);
-        await txn?.wait(3).then((rec: ContractReceipt) => {
+        const txn = await vault_ins.stake({value: value });
+        // const txn = await vault_ins.setToken(tokenAddr);
+        await txn?.wait(2).then((rec: ContractReceipt) => {
           result.receipt = rec;
           result.view = false;
           if(cancelLoading) cancelLoading();
@@ -50,8 +46,8 @@ async function sendtransaction(options: OptionProps) {
         break;
 
       case 'stakeOnBehalf':
-        const txn_1 = await vault_ins.stakeOnBehalf({value: value });
-        await txn_1?.wait(3).then((rec: ContractReceipt) => {
+        const txn_1 = await vault_ins.stakeOnBehalf(who, {value: value });
+        await txn_1?.wait(2).then((rec: ContractReceipt) => {
           result.receipt = rec;
           result.view = false;
           if(cancelLoading) cancelLoading();
@@ -60,7 +56,7 @@ async function sendtransaction(options: OptionProps) {
       
       case 'unstake':
         const txn2 = await vault_ins.unstake();
-        await txn2?.wait(3).then((rec: ContractReceipt) => {
+        await txn2?.wait(2).then((rec: ContractReceipt) => {
           result.receipt = rec;
           result.view = false;
           if(cancelLoading) cancelLoading();
@@ -69,7 +65,7 @@ async function sendtransaction(options: OptionProps) {
 
       case 'withdraw':
         const txn3 = await vault_ins.withdraw();
-        await txn3?.wait(3).then((rec: ContractReceipt) => {
+        await txn3?.wait(2).then((rec: ContractReceipt) => {
           result.receipt = rec;
           result.view = false;
           if(cancelLoading) cancelLoading();
@@ -101,8 +97,7 @@ async function sendtransaction(options: OptionProps) {
       console.log(error);
       if(cancelLoading) cancelLoading();
       if(error){
-        if(error?.data?.code === -32000) alert("Please fund your wallet with test Celo from https://faucet.celo.org")
-
+        if(error.data?.code === -32000) alert("Please fund your wallet with test Celo from https://faucet.celo.org");
       }
     }
   return result;

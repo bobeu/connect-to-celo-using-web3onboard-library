@@ -5,7 +5,7 @@ export default function getContractData() {
   return {
     vaultAbi: vault.abi,
     tokenAbi: token.abi,
-    vaultAddr: "0xcF56bD9292a72150271F1B4F9AaCA132e24CC4EE",
-    tokenAddr: "0x27598d011a304494653269D94cbAFD3ce0a08A36"
+    vaultAddr: "0x89330624480dE7Fc2e651233B022B85a1F998de7",
+    tokenAddr: "0xefA906f63ea950318d8d5Af13ae2E5D2aC221Fe4"
   }
 }

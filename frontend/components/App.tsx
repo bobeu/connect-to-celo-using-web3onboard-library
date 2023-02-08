@@ -7,7 +7,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme } from "@mui/material/styles";
 import Footer from "../components/Footer";
 import { notification } from "antd";
 import getContractData from "../components/apis/contractdata";
@@ -25,17 +24,16 @@ import { useWallets } from '@web3-onboard/react';
 const boxStyle = {
   profile_style: {
     display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
-  span_style: {
-    background: "rgba(0, 10, 10, 0.5)",
-    border: "0.1em solid gray",
-    flexGrow: 1
+    justifyContent: 'center',
+    gap: 2,
+    alignItems: 'center',
+    width: 'fit-content',
   },
   topButton: {
     color: 'whitesmoke',
-    width: 'fit-content'
+    width: 'fit-content',
+    // background: purple[300],
+    // color: green[500]
   }
 }
 
@@ -57,7 +55,7 @@ export default function App(props: AppProps) {
 
   const connectedWallets = useWallets();
   const account = connectedWallets.length? connectedWallets[0].accounts[0].address : ZERO_ACCOUNT;
-
+  const provider = connectedWallets[0]?.provider;
   const { vaultAbi } = getContractData();
   const { logout, reconnect } = props;
 
@@ -76,11 +74,12 @@ export default function App(props: AppProps) {
   React.useEffect(() => {
     const abortProcess = new AbortController();
     async function getTokenBalance() {
-      if(account) {
+      if(account && provider) {
         const res :TransactionResultProp = await sendtransaction({
           account: account, 
           functionName: 'balance', 
-          cancelLoading: cancelLoading
+          cancelLoading: cancelLoading,
+          provider: provider
         });
 
         console.log("res.read", res.read);
@@ -128,13 +127,15 @@ export default function App(props: AppProps) {
       alert(msg);
       throw new Error(msg);
     }
+    if(!provider) alert('Wallet not ready');
     const amtInBigNumber = BigNumber(amountToStake);
     const value = ethers.utils.hexValue(ethers.utils.parseUnits(amtInBigNumber.toString()));
     return await sendtransaction({ 
       value: value, 
       functionName: functionName, 
       cancelLoading: cancelLoading,
-      account: address,
+      who: address,
+      provider: provider
     });
   }
 
@@ -156,21 +157,24 @@ export default function App(props: AppProps) {
       case "unstake":
         result = await sendtransaction({
           functionName: functionName,
-          cancelLoading: cancelLoading
+          cancelLoading: cancelLoading,
+          provider: provider
         });
         break;
 
       case 'getStakeProfile':
         result = await sendtransaction({
           functionName: functionName,
-          cancelLoading: cancelLoading
+          cancelLoading: cancelLoading,
+          provider: provider
         });
         break;
 
       default:
         result = await sendtransaction({
           functionName: "withdraw",
-          cancelLoading: cancelLoading
+          cancelLoading: cancelLoading,
+          provider: provider
         });
         break;
     }
@@ -191,12 +195,12 @@ export default function App(props: AppProps) {
             {/* <Box sx={boxStyle.profile_style}> */}
               <Button variant="outlined" style={boxStyle.topButton} startIcon='Vault Balance:' endIcon={`${response?.account ? Web3.utils.fromWei(response?.celoAmount?.toString()) : 0} ${' $Celo'}`} />
               <Button variant="outlined" style={boxStyle.topButton} startIcon='Staked time:' endIcon={getTimeFromEpoch(response?.depositTime)} />
-              <Button variant="outlined" style={boxStyle.topButton} startIcon='RTK Reward:' >{tokenRewardBalance.toString()}</Button>
+              <Button variant="outlined" style={boxStyle.topButton} startIcon='RTK Reward:' >{Web3.utils.fromWei(tokenRewardBalance.toString())}</Button>
             {/* </Box> */}
           </Toolbar>
         </AppBar>
       </Container>
-      <Container maxWidth='sm' component={'main'}>
+      <Container maxWidth='sm' component={'main'} sx={{placeItems: 'center'}}>
         <Box sx={{
           display: 'flex',
           justifyContent: 'space-around',
@@ -205,7 +209,11 @@ export default function App(props: AppProps) {
           <Typography variant="h6" component="div" sx={{ display: 'flex', justifyContent: 'space-around', alignItems:'center'}}>
             <span style={{color: 'green'}}>Connected!:</span> <Address account={account} size={6} copyable={true} display />
           </Typography>
-          <Button startIcon={
+          <Button 
+            sx={{
+              color: account !== ZERO_ACCOUNT? purple[300] : 'white'
+            }}
+            startIcon={
               account !== ZERO_ACCOUNT? 'Disconnect' : 'Reconnect'
             } 
             variant='outlined' 
@@ -213,10 +221,8 @@ export default function App(props: AppProps) {
               async() => {
                 if(connectedWallets.length) {
                   await logout();
-                  console.log('clicked logout')
                 } else {
                   await reconnect();
-                  console.log('clicked ')
                 }
               }
             } 
@@ -239,7 +245,7 @@ export default function App(props: AppProps) {
             </Avatar>
           </div>
           <Typography component="h1" variant="h5" sx={{display: 'flex',justifyContent: 'space-around'}}>
-            <span style={{color: 'blue'}}>Stake $ Celo</span> <span style={{color: 'green'}}> Earn $RTK</span>
+            <span style={{color: 'blue'}}>Stake $ Celo</span> <span style={{color: purple[300]}}> Earn $RTK</span>
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Box
@@ -290,7 +296,7 @@ export default function App(props: AppProps) {
               </div>
             </Box>
             {(functionName === "stake" || functionName === "stakeOnBehalf") && <TextField margin="normal" required fullWidth id="text" label="Amount to stake" name="amount" autoComplete="amount" type={"number"} autoFocus sx={{ border: `0.1em solid ${blue[900]}`, borderRadius: "5px" }} style={{ color: "whitesmoke" }} onChange={(e) => handleAmountChange(e)} />}
-            {functionName === "stakeOnBehalf" && <TextField margin="normal" required fullWidth id="account" label="Account to stake for" name="amount" autoComplete="account" type={"text"} autoFocus sx={{ border: `0.1em solid ${blue[900]}`, borderRadius: "5px" }} style={{ color: "whitesmoke" }} onChange={(e) => handleAccountChange(e)} />}
+            {functionName === "stakeOnBehalf" && <TextField margin="normal" required fullWidth id="text" label="Account to stake for" name="amount" autoComplete="account" type={"text"} autoFocus sx={{ border: `0.1em solid ${blue[900]}`, borderRadius: "5px" }} style={{ color: "whitesmoke" }} onChange={(e) => handleAccountChange(e)} />}
             <Button
               type="submit"
               fullWidth
@@ -302,7 +308,8 @@ export default function App(props: AppProps) {
                 fontWeight: "bold",
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                background: purple[300]
               }}
             >
               { loading? <span>Trxn in Progress ... <Spinner color={"white"} /></span> : functionName }

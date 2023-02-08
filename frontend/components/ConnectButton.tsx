@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Typography } from "@mui/material";
 import { ConnectButtonProp } from "../interfaces";
-// import { orange } from "@mui/material/colors";
 import { useConnectWallet } from "@web3-onboard/react";
+import { green } from "@mui/material/colors";
 
 function ConnectButton(props: ConnectButtonProp) {
   const [{ connecting }, ] = useConnectWallet();
@@ -15,8 +15,8 @@ function ConnectButton(props: ConnectButtonProp) {
       sx={{
         width: '50%',
         height: '120px',
-        border: '0.1em solid whitesmoke',
-        color: 'whitesmoke',
+        border: '0.1em solid purple',
+        color: green[400],
         borderRadius: '6px',
         textAnchor: 'start',
       }} 

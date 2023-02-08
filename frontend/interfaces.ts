@@ -138,12 +138,12 @@ export interface InstanceProps {
   tokenAbi: any;
   vaultAddr: string,
   tokenAddr: string;
-  provider?: EIP1193Provider;
+  provider: EIP1193Provider;
 }
 
 export interface OptionProps {
   cancelLoading?: () => void;
-  provider?: EIP1193Provider | undefined;
+  provider: EIP1193Provider;
   functionName?: string;
   value?: BigNumber | string;
   who?: string;

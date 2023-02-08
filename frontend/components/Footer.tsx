@@ -6,7 +6,7 @@ export default function Footer(props: any) {
   return (
     <Typography variant="body2" sx={{color: "whitesmoke"}} align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://celo.org">
+      <Link style={{color: 'purple'}} color="inherit" href="https://celo.org">
         Made by Bobeu : For Celo developers
       </Link>{' '}
       {new Date().getFullYear()}
