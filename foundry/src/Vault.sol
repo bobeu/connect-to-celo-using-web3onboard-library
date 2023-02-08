@@ -90,6 +90,7 @@ contract Vault is IVault, Ownable{
 
     ///@dev Stake on behalf of @param who Account to stake for
     function stakeOnBehalf(address who) public payable override returns(bool) {
+        require(msg.sender != who, "please use designated function");
         return _stake(who, msg.value);
     }
 
@@ -155,9 +156,5 @@ contract Vault is IVault, Ownable{
         address alc = _getStakeProfile(msg.sender).account;
         IAccount(alc).withdrawCelo(msg.sender);
         IAccount(alc).withdrawERC20(msg.sender);
-    }
-
-    function stakeOnbehalf(address who) public payable override returns(bool) {
-
     }
 }

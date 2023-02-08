@@ -1,5 +1,6 @@
+import { EIP1193Provider, WalletState } from "@web3-onboard/core";
 import BigNumber from "bignumber.js";
-import { ethers } from "ethers";
+import { ContractReceipt, ethers, Event } from "ethers";
 import React, { CSSProperties } from "react";
 
 export interface NotificationProps {
@@ -8,11 +9,8 @@ export interface NotificationProps {
 }
 
 export interface PageProps {
-  isUserAuthenticated: boolean;
-  setAuthenticating: () => void;
-  isAuthenticating: boolean;
-  setauthentication: (x:boolean) => void;
-  setAccount: (x:string) => void;
+  isUserAuthenticated?: boolean;
+  handleConnect: () => Promise<void>;
 }
 
 export interface AddressProp {
@@ -55,16 +53,39 @@ export const MockProfile = {
 }
 
 export interface AppProps {
-  account: string;
+  account?: string;
+  logout: () => Promise<void>;
+  reconnect: () => Promise<WalletState[]>;
 }
 
-export interface TransactionResultProps {
-  view: boolean; 
-  receipt: ethers.ContractReceipt;
-  readResult: BigNumber | Profile | string | number | Profile
+interface Receipt {
+  blockHash: string;
+  blockNumber: number;
+  byzantium: boolean;
+  confirmations: number;
+  contractAddress: string;
+  cumulativeGasUsed: ethers.BigNumber;
+  effectiveGasPrice: ethers.BigNumber;
+  from: string;
+  gasUsed: ethers.BigNumber;
+  logs: Array<any>;
+  logsBloom: string;
+  to: string;
+  transactionHash: string;
+  transactionIndex: number
+  type: number;
+  events?: Event[] | undefined;
+  root?: string | undefined;
+  status?: number | undefined;
 }
 
-export const transactionResult :TransactionResultProps = {
+export interface TransactionResultProp {
+  view: boolean;
+  receipt: Receipt;
+  read: ethers.BigNumber | Profile | string | number | Profile;
+}
+
+export const transactionResult : TransactionResultProp = {
   view: false,
   receipt: {
     blockHash: '',
@@ -86,10 +107,45 @@ export const transactionResult :TransactionResultProps = {
     root: '',
     status: 0
   },
-  readResult: MockProfile
+  read: ethers.BigNumber.from(0)
 }
 
 export interface SpinnerProps {
   color: string;
   rest?: React.CSSProperties
+}
+
+export type SwitchChainReturn = number;
+
+export interface ChainParams {
+  key: number;
+  icon: JSX.Element | string;
+  chainIdStr: string;
+  rpcUrls: Array<string>;
+  chainName: string;
+  nativeCurrency: { name: string, decimals: number, symbol: string };
+  blockExplorerUrls: Array<string>;
+  iconUrls: Array<string>;
+  callback?: (arg0: SwitchChainReturn) => void;
+}
+
+export interface ConnectButtonProp {
+  connect: () => Promise<void>;
+}
+
+export interface InstanceProps {
+  vaultAbi: any;
+  tokenAbi: any;
+  vaultAddr: string,
+  tokenAddr: string;
+  provider?: EIP1193Provider;
+}
+
+export interface OptionProps {
+  cancelLoading?: () => void;
+  provider?: EIP1193Provider | undefined;
+  functionName?: string;
+  value?: BigNumber | string;
+  who?: string;
+  account?: string;
 }

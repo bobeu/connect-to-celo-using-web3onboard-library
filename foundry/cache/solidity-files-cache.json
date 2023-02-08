@@ -834,8 +834,8 @@
       }
     },
     "script/Vault.s.sol": {
-      "lastModificationDate": 1674537240593,
-      "contentHash": "c8419200ba51086f084c9e7b9d784b82",
+      "lastModificationDate": 1675350094839,
+      "contentHash": "8d3ad8d5aab52ade8b609416f0d50b6a",
       "sourceName": "script/Vault.s.sol",
       "solcConfig": {
         "settings": {
@@ -887,8 +887,8 @@
       }
     },
     "src/Vault.sol": {
-      "lastModificationDate": 1674946001265,
-      "contentHash": "a0f8c8dcc5dcec6274a4d9c1be2f07ec",
+      "lastModificationDate": 1675420729772,
+      "contentHash": "ef91eb711f1b7e94c5174462a7581b57",
       "sourceName": "src/Vault.sol",
       "solcConfig": {
         "settings": {
@@ -935,8 +935,8 @@
       }
     },
     "src/account/Account.sol": {
-      "lastModificationDate": 1675004842815,
-      "contentHash": "1ac8e76b44e06d5b9b7a8db9498d4735",
+      "lastModificationDate": 1675350094845,
+      "contentHash": "52ead783c970db095f124d6d9ed828b8",
       "sourceName": "src/account/Account.sol",
       "solcConfig": {
         "settings": {
@@ -970,7 +970,7 @@
         "src\\interfaces\\IAccount.sol",
         "src\\reward\\IERC20.sol"
       ],
-      "versionRequirement": "^0.8.13",
+      "versionRequirement": "=0.8.17",
       "artifacts": {
         "Account": {
           "0.8.17+commit.8df45f5f.Windows.msvc": "Account.sol\\Account.json"
@@ -1018,8 +1018,8 @@
       }
     },
     "src/interfaces/IVault.sol": {
-      "lastModificationDate": 1675004877142,
-      "contentHash": "c41792b1061727f5de6dd9709088f66b",
+      "lastModificationDate": 1675419606853,
+      "contentHash": "f18bd9280fd3f27b7ffbbc1fe25b7696",
       "sourceName": "src/interfaces/IVault.sol",
       "solcConfig": {
         "settings": {
@@ -1184,7 +1184,7 @@
       }
     },
     "src/reward/RewardToken.sol": {
-      "lastModificationDate": 1674228739838,
+      "lastModificationDate": 1675350094855,
       "contentHash": "a9dd7296ccad0b5bb794f13281b6c98d",
       "sourceName": "src/reward/RewardToken.sol",
       "solcConfig": {
@@ -1231,8 +1231,8 @@
       }
     },
     "test/Vault.t.sol": {
-      "lastModificationDate": 1675004918171,
-      "contentHash": "80ca57920d58b8d6f84e646dcd6e622e",
+      "lastModificationDate": 1675427276321,
+      "contentHash": "d6f40c3fbd5d97cbe82272bdc47c4df9",
       "sourceName": "test/Vault.t.sol",
       "solcConfig": {
         "settings": {
@@ -1292,6 +1292,9 @@
       ],
       "versionRequirement": "=0.8.17",
       "artifacts": {
+        "AnonymousStaker": {
+          "0.8.17+commit.8df45f5f.Windows.msvc": "Vault.t.sol\\AnonymousStaker.json"
+        },
         "VaultTest": {
           "0.8.17+commit.8df45f5f.Windows.msvc": "Vault.t.sol\\VaultTest.json"
         }

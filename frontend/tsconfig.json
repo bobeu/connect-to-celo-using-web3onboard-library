@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/apis/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/apis/index.ts", "components/apis/web3Modal/setup.ts"],
   "exclude": ["node_modules"]
 }
