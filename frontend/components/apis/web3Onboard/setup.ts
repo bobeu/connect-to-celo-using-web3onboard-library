@@ -35,7 +35,7 @@ const CHAINS = [
     rpcUrl: ALFAJORES.rpcUrls[0],
   }
 ]
-// defense hero grunt cannon renew easily reflect bean season lift giraffe figure
+
 export const web3Onboard = init({
   wallets: [injected, coinbase, walletconnect],
   chains: [...CHAINS],

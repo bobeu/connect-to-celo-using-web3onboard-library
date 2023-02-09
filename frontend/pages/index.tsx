@@ -6,7 +6,6 @@ import { web3Onboard } from "@/components/apis/web3Onboard/setup";
 
 export default function Home() {
   const [isUserAuthenticated, setAuthentication] = React.useState<boolean>(false);
-
   const [, connect, , disconnect] = useConnectWallet();
 
   async function handleConnect() {
