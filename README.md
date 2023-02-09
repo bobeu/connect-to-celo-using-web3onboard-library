@@ -61,7 +61,8 @@ Output
 [⠢] Compiling 2 files with 0.8.17
 [⠰] Solc 0.8.17 finished in 3.04s
 Compiler run successful
-Vault Deployed to: 0xcF56bD9292a72150271F1B4F9AaCA132e24CC4EE
+# Deployer: 0x85AbBd0605F9C725a1af6CA4Fb1fD4dC14dBD669
+Vault Deployed to: 0x89330624480dE7Fc2e651233B022B85a1F998de7
 Transaction hash: 0x97264f5b6c94d738e798aa440b98de1ccaccb47b31954e56e16078766723bac7     
 ```
 
@@ -76,8 +77,8 @@ Output
 [⠔] Compiling 1 files with 0.8.17
 [⠃] Solc 0.8.17 finished in 4.67s
 Compiler run successful
-Deployer: 0x85AbBd0605F9C725a1af6CA4Fb1fD4dC14dBD669
-Token Deployed to: 0x27598d011a304494653269D94cbAFD3ce0a08A36
+# Deployer: 0x85AbBd0605F9C725a1af6CA4Fb1fD4dC14dBD669
+Token Deployed to: 0xefA906f63ea950318d8d5Af13ae2E5D2aC221Fe4
 Transaction hash: 0x5e430c21123e8e785765b8c7e501506d835e489de320d1c662b3cc6ea287e474
 ```
 
