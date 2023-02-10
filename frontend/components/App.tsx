@@ -203,12 +203,12 @@ export default function App(props: AppProps) {
       <Container maxWidth='sm' component={'main'} sx={{placeItems: 'center'}}>
         <Box sx={{
           display: 'flex',
-          justifyContent: 'space-around',
+          justifyContent: 'right',
           alignItems: 'center'
         }}>
-          <Typography variant="h6" component="div" sx={{ display: 'flex', justifyContent: 'space-around', alignItems:'center'}}>
+          {/* <Typography variant="h6" component="div" sx={{ display: 'flex', justifyContent: 'space-around', alignItems:'center'}}>
             <span style={{color: 'green'}}>Connected!:</span> <Address account={account} size={6} copyable={true} display />
-          </Typography>
+          </Typography> */}
           <Button 
             sx={{
               color: account !== ZERO_ACCOUNT? purple[300] : 'white'
